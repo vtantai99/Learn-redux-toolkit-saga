@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import './App.css';
+import { cityApi } from 'api';
 
 function App() {
+  useEffect(() => {
+    cityApi.getAll().then((res) => console.log('Boy ==>', res));
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
@@ -14,7 +18,7 @@ function App() {
         </p>
         <span>
           <span>Learn </span>
-          <a 
+          <a
             className="App-link"
             href="https://reactjs.org/"
             target="_blank"
