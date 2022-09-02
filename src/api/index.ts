@@ -1,1 +1,2 @@
-export * from './cityApi'
+export * from './cityApi';
+export * from './studentApi';
