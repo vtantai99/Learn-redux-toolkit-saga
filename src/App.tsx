@@ -14,7 +14,7 @@ function App() {
         </p>
         <span>
           <span>Learn </span>
-          <a
+          <a 
             className="App-link"
             href="https://reactjs.org/"
             target="_blank"
