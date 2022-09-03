@@ -1,61 +1,25 @@
-import React, { useEffect } from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
 import { cityApi } from 'api';
+import { NotFound, PrivateRoute } from 'components/Common';
+import { AdminLayout } from 'components/Layout';
+import { ROUTE } from 'constant';
+import LoginPage from 'features/auth/pages/Login';
+import { useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import './App.css';
 
 function App() {
   useEffect(() => {
     cityApi.getAll().then((res) => console.log('Boy ==>', res));
   }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <Routes>
+      <Route path={ROUTE.LOGIN} element={<LoginPage />} />
+      <Route
+        path={ROUTE.ADMIN.LAYOUT}
+        element={<PrivateRoute children={<AdminLayout />} />}
+      ></Route>
+      <Route path={ROUTE.NOT_FOUND} element={<NotFound />} />
+    </Routes>
   );
 }
 
